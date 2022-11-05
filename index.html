@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>NSC</title>
+	<script src="main.js" defer></script>
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<header>
+		<h1>Number System Convertor</h1>
+	</header>
+
+	<main class="form-wrap">
+		<form action="#!" class="nsc-form" id="nsc-form">
+			<div class="from-to-wrapper">
+				<!-- From -->
+				<div class="form-group">
+					<label for="systemTypeFrom">From: </label>
+					<select name="systemType" id="systemTypeFrom" aria-label="change this number from">
+						<option value="binary">Binary</option>
+						<option value="decimal">Decimal</option>
+					</select>
+				</div>
+				<!-- To -->
+				<div class="form-group">
+					<label for="systemTypeTo">To: </label>
+					<select name="systemType" id="systemTypeTo" aria-label="change this number to">
+						<option value="binary">Binary</option>
+						<option value="decimal">Decimal</option>
+					</select>
+				</div>
+			</div>
+			<!-- Input -->
+			<div id="input-wrap" data-is-error="false" data-error-messege="Pass a valid input">
+				<input type="text" id="numberInput" aria-label="Enter your number" placeholder="Enter a number (eg.12AF)">
+			</div>
+			</div>
+			<!-- Convert -->
+			<button type="submit" id="convertBtn">Convert</button>
+			<!-- Output -->
+			<div id="output">Output</div>
+
+		</form>
+	</main>
+
+	<footer>
+		<span>Developed By: <a href="https://www.linkedin.com/in/mohamed-shelf/" target="_blank">@Mohamed Shelf</a></span>
+	</footer>
+
+</body>
+
+</html>

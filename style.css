@@ -1,0 +1,203 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font: 1.5rem/1.5 sans-serif;
+  background-color: #e3e4e4;
+  min-height: 100vh;
+  padding-top: 4rem;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  padding: 2rem;
+  padding-right: 3rem;
+}
+
+header h1 {
+  box-shadow: blue 0px 0px 0px 2px inset, rgb(255, 255, 255) 5px -5px 0px -3px,
+    rgb(31, 193, 27) 5px -5px, rgb(255, 255, 255) 10px -10px 0px -3px,
+    rgb(255, 217, 19) 10px -10px, rgb(255, 255, 255) 15px -15px 0px -3px,
+    rgb(255, 156, 85) 15px -15px, rgb(255, 255, 255) 20px -20px 0px -3px,
+    rgb(255, 85, 85) 20px -20px;
+  text-align: center;
+  max-width: 500px;
+  margin: auto;
+  background-color: #fff;
+  font-weight: 300;
+  padding: 2rem;
+  font-size: 1.5rem;
+}
+
+.form-wrap {
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  padding: 0 2rem;
+  margin-top: 7rem;
+}
+
+.nsc-form {
+  width: 100%;
+
+  background-color: #ffffff78;
+  color: #333;
+  border-radius: 15px;
+  padding: 3rem 2rem;
+
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
+    rgba(21, 51, 63, 0.408) -6px -2px 20px 0px;
+
+  display: flex;
+  flex-flow: column;
+  gap: 3rem;
+}
+
+.from-to-wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  gap: 3rem;
+  width: 100%;
+}
+
+.nsc-form .form-group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.nsc-form select[name='systemType'],
+.nsc-form #numberInput {
+  background-color: transparent;
+  letter-spacing: 1px;
+  font-size: inherit;
+  padding: 2rem;
+  border-radius: 40px;
+  border: 1px solid gray;
+  box-shadow: rgb(212, 218, 224) 3px 3px 6px 0px inset,
+    rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+
+#input-wrap {
+  position: relative;
+}
+
+#input-wrap[data-is-error='true'] #numberInput {
+  background-color: rgba(242, 101, 101, 0.307);
+}
+
+.nsc-form #numberInput {
+  font-size: 1.2rem;
+}
+
+#input-wrap::after {
+  content: attr(data-error-messege);
+  position: relative;
+  left: 2rem;
+  font-size: 1rem;
+  height: max-content;
+  width: 100%;
+  color: darkred;
+  transform-origin: left;
+  transition: all 200ms ease-in-out;
+}
+
+#input-wrap[data-is-error='true']::after {
+  transform: scale(1);
+  visibility: visible;
+}
+
+#input-wrap[data-is-error='false']::after {
+  transform: scale(0);
+  visibility: hidden;
+}
+
+#output {
+  text-align: center;
+  color: gray;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  padding: 2rem 0;
+  border-radius: 40px;
+
+  display: grid;
+  place-items: center;
+}
+
+.nsc-form #convertBtn {
+  font-size: 2rem;
+  font-weight: 400;
+  cursor: pointer;
+  padding: 2rem;
+  border-radius: 40px;
+  border: 1px solid gray;
+  letter-spacing: 2px;
+
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+footer {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-top: 10rem;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  min-height: 4rem;
+  font-size: 1.2rem;
+  background-color: #fff;
+  box-shadow: blue 0px 0px 0px 2px inset, rgb(255, 255, 255) 5px -5px 0px -3px,
+    rgb(31, 193, 27) 5px -5px, rgb(255, 255, 255) 10px -10px 0px -3px,
+    rgb(255, 217, 19) 10px -10px, rgb(255, 255, 255) 15px -15px 0px -3px,
+    rgb(255, 156, 85) 15px -15px, rgb(255, 255, 255) 20px -20px 0px -3px,
+    rgb(255, 85, 85) 20px -20px;
+  padding: 2rem;
+}
+
+@media (min-width: 500px) {
+  header {
+    padding-right: initial;
+  }
+  header h1 {
+    font-size: 3rem;
+  }
+
+  #input-wrap::after {
+    font-size: 1.5rem;
+  }
+  .nsc-form {
+    padding: 5rem 3rem;
+    font-size: 2rem;
+  }
+
+  .from-to-wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+  }
+
+  .nsc-form #numberInput {
+    font-size: inherit;
+  }
+
+  footer {
+    font-size: 2rem;
+  }
+}
