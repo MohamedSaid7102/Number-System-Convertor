@@ -201,3 +201,16 @@ footer {
     font-size: 2rem;
   }
 }
+
+/* Animation */
+@keyframes shake {
+  25% {
+    transform: translate(4px);
+  }
+  50% {
+    transform: translate(-4px);
+  }
+  75% {
+    transform: translate(4px);
+  }
+}

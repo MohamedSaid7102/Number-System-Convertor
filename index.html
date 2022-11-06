@@ -24,6 +24,7 @@
 					<select name="systemType" id="systemTypeFrom" aria-label="change this number from">
 						<option value="binary">Binary</option>
 						<option value="decimal">Decimal</option>
+						<option value="hex">Hex Decimal</option>
 					</select>
 				</div>
 				<!-- To -->
@@ -32,12 +33,14 @@
 					<select name="systemType" id="systemTypeTo" aria-label="change this number to">
 						<option value="binary">Binary</option>
 						<option value="decimal">Decimal</option>
+						<option value="hex">Hex Decimal</option>
 					</select>
 				</div>
 			</div>
 			<!-- Input -->
-			<div id="input-wrap" data-is-error="false" data-error-messege="Pass a valid input">
-				<input type="text" id="numberInput" aria-label="Enter your number" placeholder="Enter a number (eg.12AF)">
+			<div id="input-wrap" data-is-error=false data-error-messege="Pass a valid input">
+				<input type="text" id="numberInput" aria-label="Enter your number" placeholder="Enter a number (eg.12AF)"
+					autocomplete="off">
 			</div>
 			</div>
 			<!-- Convert -->

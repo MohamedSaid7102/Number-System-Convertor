@@ -1,12 +1,120 @@
 const form = document.getElementById('nsc-form');
 const systemTypeFrom = document.getElementById('systemTypeFrom');
+let systemFrom = systemTypeFrom.options[systemTypeFrom.selectedIndex].value;
 const systemTypeTo = document.getElementById('systemTypeTo');
+let systemTo = systemTypeTo.options[systemTypeTo.selectedIndex].value;
 const input = document.getElementById('numberInput');
+const inputWrap = document.getElementById('input-wrap');
 const output = document.getElementById('output');
-const decimal = 'decimal';
-const binary = 'binary';
+// Data
+const DECIMAL = 'decimal';
+const BINARY = 'binary';
+const HEX = 'hex';
+const binaryNumbers = [0, 1];
+const decimalNumber = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+const hexNumber = [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  ,
+  'A',
+  'a',
+  'B',
+  'b',
+  'C',
+  'c',
+  'D',
+  'd',
+  'E',
+  'e',
+  'F',
+  'f',
+];
+const numbersMap = new Map([
+  [10, ['A', 'a']],
+  [11, ['B', 'b']],
+  [12, ['C', 'c']],
+  [13, ['D', 'd']],
+  [14, ['E', 'e']],
+  [15, ['F', 'f']],
+]);
+
+// Event Listeners
+systemTypeFrom.addEventListener('input', () => {
+  systemFrom = systemTypeFrom.options[systemTypeFrom.selectedIndex].value;
+  validateUserInput();
+});
+
+systemTypeTo.addEventListener('input', () => {
+  systemTo = systemTypeTo.options[systemTypeTo.selectedIndex].value;
+  validateUserInput();
+});
+
+input.addEventListener('input', () => {
+  validateUserInput();
+});
 
 form.addEventListener('submit', handleNumberSystemsConvert);
+
+/**
+ * Validate user input according to current system to change from
+ */
+function validateUserInput() {
+  const splittedInput = splitReverse(input.value);
+
+  if (
+    systemFrom == BINARY &&
+    !splittedInput.every((item) => binaryNumbers.includes(item))
+  )
+    notifyUser({
+      isValidInput: false,
+      message: 'Binary numbers are only 0s and 1s',
+    });
+  else if (
+    systemFrom == DECIMAL &&
+    !splittedInput.every((item) => decimalNumber.includes(item))
+  )
+    notifyUser({
+      isValidInput: false,
+      message: 'Decimal numbers are only within 0:9',
+    });
+  else if (
+    systemFrom == HEX &&
+    !splittedInput.every((item) => hexNumber.includes(item))
+  )
+    notifyUser({
+      isValidInput: false,
+      message: 'Hex Decimal numbers are within 0:9 and a:f',
+    });
+  else
+    notifyUser({
+      isValidInput: true,
+      message: '',
+    });
+}
+
+/**
+ *
+ * @param {{isValidInput, message}} Object notify user
+ */
+function notifyUser({ isValidInput, message }) {
+  if (!isValidInput) {
+    window.navigator.vibrate([100, 70, 100]);
+    input.style.animation = 'shake 0.3s';
+    setTimeout(() => {
+      input.style.animation = '';
+    }, 500);
+  }
+  inputWrap.setAttribute('data-is-error', !isValidInput);
+  inputWrap.setAttribute('data-error-messege', message);
+}
 
 function handleNumberSystemsConvert(e) {
   e.preventDefault();
@@ -71,6 +179,31 @@ function fromDecimalToBinary(input) {
   return input + 'fromBinaryToDecimal';
 }
 
+// ************************************ //
+// ************ Utilities ************ //
+// ********************************** //
+
+/**
+ * This is similar to Array.split(), but I wanted to implement the logic
+ * @param {string} input
+ * @returns {Array} array of splitted input
+ */
+function splitReverse(input) {
+  if (typeof number != 'string') input += '';
+
+  let decimalDigits = [];
+  while (input != '') {
+    // get last char at the number 'as a string' then convert to number, and add it to the array
+    let currentNumber = input.at(-1);
+    let newItem = currentNumber.match('[0-9]')
+      ? Number(currentNumber)
+      : currentNumber;
+    decimalDigits.push(newItem);
+    input = input.slice(0, -1);
+  }
+  return decimalDigits;
+}
+
 /**
  *
  * @param {Array} arrayOfNumbers array of digits to convert from
@@ -83,17 +216,4 @@ function getSumAs(arrayOfNumbers, numberSystem) {
     result += numberSystem ** i * arrayOfNumbers[i];
 
   return result;
-}
-
-function splitReverse(input) {
-  if (typeof number != 'string') input += '';
-
-  let decimalDigits = [];
-  while (input != '') {
-    // get last char at the number 'as a string' then convert to number, and add it to the array
-    let currentNumber = input.at(-1);
-    decimalDigits.push(currentNumber);
-    input = input.slice(0, -1);
-  }
-  return decimalDigits;
 }
